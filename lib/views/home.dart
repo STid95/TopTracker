@@ -13,10 +13,11 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     TextEditingController artistController = TextEditingController();
-    final _formKey = GlobalKey<FormState>();
     MediaQueryData media = MediaQuery.of(context);
 
     return Scaffold(
@@ -27,7 +28,13 @@ class _Home extends State<Home> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Entrez un artiste"),
+            SizedBox(
+              width: media.size.width * 0.7,
+              child: const Text(
+                "Entrez un artiste pour découvrir ses 10 morceaux les plus écoutés sur Spotify",
+                maxLines: 2,
+              ),
+            ),
             SizedBox(
                 width: media.size.width * 0.7,
                 child: Form(
@@ -49,12 +56,15 @@ class _Home extends State<Home> {
                 padding: EdgeInsets.only(top: media.size.height * 0.07),
                 child: ElevatedButton(
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        List <Artist> list = await getArtistId(
-                            artistController.text);
-                        Navigator.pushNamed(context, "/chooseArtist", arguments: list);
-                      }
-                    },
+                        List<Artist>? list =
+                            await getArtistId(artistController.text);
+                        if (list != null) {
+                          Navigator.pushNamed(context, "/chooseArtist",
+                              arguments: list);
+                        } else {
+                          Text("L'artiste est introuvable");
+                        }
+                      },
                     child: const Text("Voir les top tracks")))
           ],
         )));

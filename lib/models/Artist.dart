@@ -14,7 +14,7 @@ class Artist {
 }
 
   class ArtistList {
-    List <Artist> artistList;
+    List <Artist>? artistList;
 
     ArtistList(this.artistList);
 
