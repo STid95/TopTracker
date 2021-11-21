@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:top_tracker/models/Artist.dart';
 import 'package:top_tracker/services/getArtistId.dart';
 
 class Home extends StatefulWidget {
@@ -47,9 +48,11 @@ class _Home extends State<Home> {
             Padding(
                 padding: EdgeInsets.only(top: media.size.height * 0.07),
                 child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        getArtistId(artistController.text);
+                        List <Artist> list = await getArtistId(
+                            artistController.text);
+                        Navigator.pushNamed(context, "/chooseArtist", arguments: list);
                       }
                     },
                     child: const Text("Voir les top tracks")))
