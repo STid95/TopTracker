@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:top_tracker/models/Artist.dart';
-import 'package:top_tracker/services/getArtistId.dart';
+import 'package:top_tracker/models/artist.dart';
+import 'package:top_tracker/services/get_artists.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -57,12 +57,12 @@ class _Home extends State<Home> {
                 child: ElevatedButton(
                     onPressed: () async {
                         List<Artist>? list =
-                            await getArtistId(artistController.text);
+                            await getArtists(artistController.text);
                         if (list != null) {
                           Navigator.pushNamed(context, "/chooseArtist",
                               arguments: list);
                         } else {
-                          Text("L'artiste est introuvable");
+                          const Text("L'artiste est introuvable");
                         }
                       },
                     child: const Text("Voir les top tracks")))

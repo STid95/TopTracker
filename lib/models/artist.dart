@@ -1,4 +1,4 @@
-import 'Image.dart';
+import 'image.dart';
 
 class Artist {
   String id;
@@ -20,12 +20,12 @@ class Artist {
 
     factory ArtistList.fromJson(List<dynamic> parsedJson) {
       List<Artist> artistList = [];
-      parsedJson.forEach((element) {
+      for (var element in parsedJson) {
         Artist artist = Artist.fromJson(element);
         artistList.add(artist);
-      });
+      }
 
-      return new ArtistList(
+      return ArtistList(
           artistList
       );
     }

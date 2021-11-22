@@ -13,11 +13,11 @@ class ImageList {
 
   factory ImageList.fromJson(List<dynamic> parsedJson) {
     List<Image> imageList = [];
-    parsedJson.forEach((element) {
+    for (var element in parsedJson) {
       Image image = Image.fromJson(element);
       imageList.add(image);
-    });
+    }
 
-    return new ImageList(imageList);
+    return ImageList(imageList);
   }
 }

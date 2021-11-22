@@ -19,12 +19,12 @@ class TrackList {
 
   factory TrackList.fromJson(List<dynamic> parsedJson) {
     List<Track> trackList = [];
-    parsedJson.forEach((element) {
+    for (var element in parsedJson) {
       Track track = Track.fromJson(element);
       trackList.add(track);
-    });
+    }
 
-    return new TrackList(
+    return TrackList(
         trackList
     );
   }

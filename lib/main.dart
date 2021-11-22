@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:top_tracker/views/chooseArtist.dart';
+import 'package:top_tracker/views/choose_artist.dart';
 import 'package:top_tracker/views/home.dart';
-import 'package:top_tracker/views/topTracks.dart';
+import 'package:top_tracker/views/top_tracks.dart';
 
 void main() => runApp(
       MaterialApp(
